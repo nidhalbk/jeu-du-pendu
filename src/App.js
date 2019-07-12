@@ -9,27 +9,39 @@ class App extends Component {
   state= {
     letterClicked:"",
     phrase:"formule",
-    position:0
+    position:0,
+    phraseAff:'_______'
   }
-  handleClick=(lettre)=>{
-    console.log()
+  handleClick=(letter)=>{
+    console.log('1111111',letter)
     let phrase=this.state.phrase.split('')
-    if(!phrase.includes(lettre)){
+    let newphraseAff=this.state.phraseAff.split('')
+    if(!phrase.includes(letter)){
       this.setState({
-        position: this.state.position-7
+        position:this.state.position-7
       })
+      return
     }
-  }
+    console.log('true',phrase.indexOf(letter));
+    newphraseAff[phrase.indexOf(letter)]=letter;
+    this.setState({
+      phraseAff:newphraseAff.join("")
+    })
+}
   render(){
     return (
       <div className="App">
-        <Image position={this.state.position} />
+        <Image position={this.state.position} className="image"/>
         <div>
-        {lettres.map((l,index)=>(
-          <Lettre key={index} lettre={l} onClick={this.handleClick}/>
+        {this.state.phraseAff.split('').map((letter,index)=>(
+          <Lettre key={index} lettre={letter}/>
+          ))}
+        </div>
+        <div>
+        {lettres.map((letter,index)=>(
+          <Lettre key={index} lettre={letter} handleClick={()=>this.handleClick(letter)}/>
         ))}
         </div>
-        
       </div>
     );
   }

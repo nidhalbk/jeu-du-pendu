@@ -31,7 +31,15 @@
     transform: rotate(360deg);
   }
 }
-h1{
+.letter{
   border: solid black 1px;
   display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+}
+.letter p{
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
